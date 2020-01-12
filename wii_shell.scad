@@ -132,10 +132,61 @@ module standoff(standoff_height)
     };    
 };
 
-module case(standoffs=true)
+module shield_standoffs()
+{
+    // standoffs for metal shield
+    // left
+    translate([15.25-2.25,68-2.25,ground_plane_thickness])
+        standoff(3);
+        
+    translate([15.25-2.25,115-2.25,ground_plane_thickness])
+        standoff(3);
+        
+    translate([16-2.25,132-2.25,ground_plane_thickness])
+        standoff(4);
+
+    // right
+    translate([width-11.75-2.25,68-2.25,ground_plane_thickness])
+        standoff(3);
+
+    translate([width-11.75-2.25,115-2.25,ground_plane_thickness])
+        standoff(3);
+
+    translate([width-12.5-2.25,132-2.25,ground_plane_thickness])
+        standoff(4);
+        
+    // front
+    translate([15.25-2.25,1,ground_plane_thickness+front_lip/2])
+        standoff(5.5);
+        
+    translate([width-11.25-2.25,3.5,ground_plane_thickness+front_lip])
+        standoff(3);
+}
+
+module screw_posts()
+{
+    // case screws    
+    translate([10.25-2.25,68+123.5-4.5-2.25,ground_plane_thickness])
+        standoff(depth-ground_plane_thickness-19);
+        
+    translate([width-11.25+2.25,height-11+2.25,ground_plane_thickness])
+        standoff(depth-ground_plane_thickness-19);
+        
+    // front lip
+    translate([2.25,0,2.25])
+        cube([width-2.25-3.25,7,front_lip]);
+        
+    translate([2.25,0,2.25])
+        cube([1.5,7,depth-15.25]);
+}
+
+module case()
 {
     // this creates the base shape of the case without any cutouts
-
+    //bottom
+    linear_extrude(ground_plane_thickness)
+        base_shape();
+    
     // left
     translate([0,5,0])
         cube([side_wall_thickness,height-triangle-5,depth]);
@@ -159,55 +210,6 @@ module case(standoffs=true)
     translate([width-side_wall_thickness-3.15,0,0])
         cube([side_wall_thickness,height-11.25-connector_wall_thickness,depth-11.25]);
     
-    //bottom
-    linear_extrude(ground_plane_thickness)
-        base_shape();
-
-    if ( standoffs == true)
-    {
-        // standoffs for metal shield
-        // left
-        translate([15.25-2.25,68-2.25,ground_plane_thickness])
-            standoff(3);
-        
-        translate([15.25-2.25,115-2.25,ground_plane_thickness])
-            standoff(3);
-        
-        translate([16-2.25,132-2.25,ground_plane_thickness])
-            standoff(4);
-
-        // right
-        translate([width-11.75-2.25,68-2.25,ground_plane_thickness])
-            standoff(3);
-
-        translate([width-11.75-2.25,115-2.25,ground_plane_thickness])
-            standoff(3);
-
-        translate([width-12.5-2.25,132-2.25,ground_plane_thickness])
-            standoff(4);
-        
-        // front
-        translate([15.25-2.25,1,ground_plane_thickness+front_lip/2])
-            standoff(5.5);
-        
-        translate([width-11.25-2.25,3.5,ground_plane_thickness+front_lip])
-            standoff(3);
-    }    
-    
-    // case screws    
-    translate([10.25-2.25,68+123.5-4.5-2.25,ground_plane_thickness])
-        standoff(depth-ground_plane_thickness-19);
-        
-    translate([width-11.25+2.25,height-11+2.25,ground_plane_thickness])
-        standoff(depth-ground_plane_thickness-19);
-        
-    // front lip
-    translate([2.25,0,2.25])
-        cube([width-2.25-3.25,7,front_lip]);
-        
-    translate([2.25,0,2.25])
-        cube([1.5,7,depth-15.25]);
-        
     // connector standoffs
     // AC
     translate([triangle+4,height-side_wall_thickness-4.25,ground_plane_thickness])
@@ -328,6 +330,8 @@ module sensorbar_cutout()
 module exterior()
 {
     case();
+
+    // feet
     // bottom
     translate([-1,8,2.5])
         foot();
@@ -337,6 +341,10 @@ module exterior()
     translate([-1,height-23-feet_outer,34.5])
         foot();
     // top right is on battery cover
+
+    shield_standoffs();
+
+    screw_posts();
 }
 
 difference()
