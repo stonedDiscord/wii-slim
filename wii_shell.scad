@@ -119,7 +119,7 @@ module standoff(standoff_height)
     };    
 };
 
-module case()
+module case(standoffs=true)
 {
     // this creates the base shape of the case without any cutouts
 
@@ -149,35 +149,37 @@ module case()
     //bottom
     linear_extrude(ground_plane_thickness)
         base_shape();
+
+    if ( standoffs == true)
+    {
+        // standoffs for metal shield
+        // left
+        translate([15.25-2.25,68-2.25,ground_plane_thickness])
+            standoff(3);
         
-    // standoffs for metal shield
-    // left
-    translate([15.25-2.25,68-2.25,ground_plane_thickness])
-        standoff(3);
+        translate([15.25-2.25,115-2.25,ground_plane_thickness])
+            standoff(3);
         
-    translate([15.25-2.25,115-2.25,ground_plane_thickness])
-        standoff(3);
+        translate([16-2.25,132-2.25,ground_plane_thickness])
+            standoff(4);
+
+        // right
+        translate([width-11.75-2.25,68-2.25,ground_plane_thickness])
+            standoff(3);
+
+        translate([width-11.75-2.25,115-2.25,ground_plane_thickness])
+            standoff(3);
+
+        translate([width-12.5-2.25,132-2.25,ground_plane_thickness])
+            standoff(4);
         
-    translate([16-2.25,132-2.25,ground_plane_thickness])
-        standoff(4);
+        // front
+        translate([15.25-2.25,1,ground_plane_thickness+front_lip/2])
+            standoff(5.5);
         
-    // right
-    translate([width-11.75-2.25,68-2.25,ground_plane_thickness])
-        standoff(3);
-        
-    translate([width-11.75-2.25,115-2.25,ground_plane_thickness])
-        standoff(3);
-        
-    translate([width-12.5-2.25,132-2.25,ground_plane_thickness])
-        standoff(4);
-        
-    // front
-    translate([15.25-2.25,1,ground_plane_thickness+front_lip/2])
-        standoff(5.5);
-        
-    translate([width-11.25-2.25,3.5,ground_plane_thickness+front_lip])
-        standoff(3);
-        
+        translate([width-11.25-2.25,3.5,ground_plane_thickness+front_lip])
+            standoff(3);
+    }    
     
     // case screws    
     translate([10.25-2.25,68+123.5-4.5-2.25,ground_plane_thickness])
