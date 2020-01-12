@@ -91,23 +91,36 @@ module intercase_cutout()
 module screwholes()
 {
     // bigger ones have a diameter of 2.75mm
+    screw_radius = 2.75 / 2;
     // left
     translate([0,37.5,6])
         rotate([0,90,0])
-            cylinder(h=side_wall_thickness,r=2.75/2);
+            cylinder(h=side_wall_thickness,r=screw_radius);
     translate([0,125.5,6])
         rotate([0,90,0])
-            cylinder(h=side_wall_thickness,r=2.75/2);
+            cylinder(h=side_wall_thickness,r=screw_radius);
     translate([0,110,depth-2.75])
         rotate([0,90,0])
-            cylinder(h=side_wall_thickness,r=2.75/2);
+            cylinder(h=side_wall_thickness,r=screw_radius);
     // right
-    translate([width-5.75,37.5,6])
+    translate([width-5.75,37.5,7.5])
         rotate([0,90,0])
-            cylinder(h=5.75,r=2.75/2);
-    translate([width-5.75,125.5,6])
+            cylinder(h=5.75,r=screw_radius);
+    translate([width-5.75,125.5,7.5])
         rotate([0,90,0])
-            cylinder(h=5.75,r=2.75/2);
+            cylinder(h=5.75,r=screw_radius);
+
+    // the smaller ones are 1.5mm in diameter
+    small_screw_radius = 1.5 / 2;
+    // left
+    translate([0,10,6])
+        rotate([0,90,0])
+            cylinder(h=side_wall_thickness,r=small_screw_radius);
+    
+    // right
+    translate([width-5.75,10,6])
+        rotate([0,90,0])
+            cylinder(h=5.75,r=small_screw_radius);
 }
 
 module standoff(standoff_height)
