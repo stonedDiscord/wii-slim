@@ -225,7 +225,7 @@ module gamecube_memory_slot(slots = 2)
         cube([34,slot_width,slot_height]);
     
     // slot a
-    if(slots = 2)
+    if (slots == 2) 
         translate([width-34,height-21.75-slot_width,depth-20.5-10.5])
             cube([34,slot_width,slot_height]);
     
@@ -264,7 +264,7 @@ module fan_grille(columns,rows=4)
 module main_fan_cutout()
 {
     //35mm fan
-    translate([,,])
+    translate([triangle+49.25,height-side_wall_thickness-15,ground_plane_thickness])
         cube([35,15,35]);
 }
 
@@ -344,7 +344,7 @@ difference()
     ac_multiout_cutout();
 
     heatsink_cutout();
-    
+
     screwholes();
 };
 
