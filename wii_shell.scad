@@ -110,17 +110,19 @@ module screwholes()
             cylinder(h=5.75,r=2.75/2);
 }
 
-module standoff(sh)
+module standoff(standoff_height)
 {
     difference()
     {
-        cylinder(h=sh, r=2.25);
-        cylinder(h=sh, r=1.25) ;       
+        cylinder(h=standoff_height, r=2.25);
+        cylinder(h=standoff_height, r=1.25) ;       
     };    
 };
 
 module case()
 {
+    // this creates the base shape of the case without any cutouts
+
     // left
     translate([0,5,0])
         cube([side_wall_thickness,height-triangle-5,depth]);
@@ -213,13 +215,18 @@ module gamecube_controller_ports()
 
 module gamecube_memory_slot()
 {
-    // 10,5 x 38,5
-    translate([width-34,height-21.75-38.5,depth-4-10.5])
-        cube([34,38.5,10.5]);
+    slot_width  = 38.6;
+    slot_height = 10.6;
+
+    // top slot
+    translate([width-34,height-21.75-slot_width,depth-4-10.5])
+        cube([34,slot_width,slot_height]);
     
-    translate([width-34,height-21.75-38.5,depth-20.5-10.5])
-        cube([34,38.5,10.5]);
+    // bottom slot
+    translate([width-34,height-21.75-slot_width,depth-20.5-10.5])
+        cube([34,slot_width,slot_height]);
     
+    // connector behind
     translate([width-side_wall_thickness-3.25-30.5,height-61.5,depth-6-29])
         cube([30.5,40.25,29]);
 }
