@@ -213,22 +213,25 @@ module gamecube_controller_ports()
     
 }
 
-module gamecube_memory_slot()
+module gamecube_memory_slot(slots = 2)
 {
     slot_width  = 38.6;
     slot_height = 10.6;
 
-    // top slot
+    connector_height = 29;
+
+    // slot b
     translate([width-34,height-21.75-slot_width,depth-4-10.5])
         cube([34,slot_width,slot_height]);
     
-    // bottom slot
-    translate([width-34,height-21.75-slot_width,depth-20.5-10.5])
-        cube([34,slot_width,slot_height]);
+    // slot a
+    if(slots = 2)
+        translate([width-34,height-21.75-slot_width,depth-20.5-10.5])
+            cube([34,slot_width,slot_height]);
     
     // connector behind
     translate([width-side_wall_thickness-3.25-30.5,height-61.5,depth-6-29])
-        cube([30.5,40.25,29]);
+        cube([30.5,40.25,connector_height]);
 }
 
 module gamecube_port_cover()
@@ -260,6 +263,13 @@ module fan_grille(columns,rows=4)
 
 module main_fan_cutout()
 {
+    //35mm fan
+    translate([,,])
+        cube([35,15,35]);
+}
+
+module main_vent_cutout()
+{
     translate([triangle+49.25,height,4.12])
         rotate([90,0,0])
             linear_extrude(connector_wall_thickness)
@@ -267,7 +277,7 @@ module main_fan_cutout()
     
 };
 
-module sub_fan_cutout()
+module sub_vent_cutout()
 {
     translate([0,135,5.6])
         rotate([90,0,90])
@@ -317,17 +327,24 @@ module exterior()
 difference()
 {
     exterior();
+
     intercase_cutout();
     battery_cutout();
+
     gamecube_controller_ports();
     gamecube_memory_slot();
     gamecube_port_cover();
+
     main_fan_cutout();
+    main_vent_cutout();
+    sub_vent_cutout();
+
     usb_cutout();
-    sensorbar_cutout();
-    sub_fan_cutout();
+    sensorbar_cutout();    
     ac_multiout_cutout();
+
     heatsink_cutout();
+    
     screwholes();
 };
 
