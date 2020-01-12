@@ -243,15 +243,20 @@ module foot()
     
 };
 
+module fan_grille(columns,rows=4)
+{
+    for (x=[0:columns])
+        for (y=[0:rows])
+            translate([x*7,y*7])
+                square(5.5);
+}
+
 module main_fan_cutout()
 {
     translate([triangle+49.25,height,4.12])
         rotate([90,0,0])
             linear_extrude(connector_wall_thickness)
-                for (x=[0:4])
-                    for (y=[0:4])
-                        translate([x*7,y*7])
-                            square(5.5);   
+                 fan_grille(4);
     
 };
 
@@ -260,10 +265,7 @@ module sub_fan_cutout()
     translate([0,135,5.6])
         rotate([90,0,90])
             linear_extrude(side_wall_thickness)
-                for (x=[0:2])
-                    for (y=[0:4])
-                        translate([x*7,y*7])
-                            square(5.5);   
+                fan_grille(2);  
     
 };
 
