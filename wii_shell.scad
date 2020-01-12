@@ -104,10 +104,10 @@ module screwholes()
             cylinder(h=side_wall_thickness,r=screw_radius);
     // right
     translate([width-5.75,37.5,7.5])
-        rotate([0,90,0])
+        rotate([0,270,0])
             cylinder(h=5.75,r=screw_radius);
     translate([width-5.75,125.5,7.5])
-        rotate([0,90,0])
+        rotate([0,270,0])
             cylinder(h=5.75,r=screw_radius);
 
     // the smaller ones are 1.5mm in diameter
@@ -119,7 +119,7 @@ module screwholes()
     
     // right
     translate([width-5.75,10,6])
-        rotate([0,90,0])
+        rotate([0,270,0])
             cylinder(h=5.75,r=small_screw_radius);
 }
 
