@@ -185,12 +185,21 @@ module shield_standoffs()
 
 module screw_posts()
 {
-    // case screws    
+    // for case screws    
     translate([10.25-2.25,68+123.5-4.5-2.25,ground_plane_thickness])
         standoff(depth-ground_plane_thickness-19);
         
     translate([width-11.25+2.25,height-11+2.25,ground_plane_thickness])
         standoff(depth-ground_plane_thickness-19);
+
+    // supports
+    translate([10.25-3.25,68+123.5-4.5-1.25,ground_plane_thickness])
+        rotate([0,0,45])
+            cube([0.75,4.25,depth-ground_plane_thickness-19]);
+        
+    translate([width-11.25+3.25,height-11+1.25,ground_plane_thickness])
+        rotate([0,0,250])
+            cube([0.75,4.25,depth-ground_plane_thickness-19]);
 }
 
 module connector_standoffs()
