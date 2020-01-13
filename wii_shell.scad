@@ -180,6 +180,16 @@ module screw_posts()
         cube([1.5,7,depth-15.25]);
 }
 
+module connector_standoffs()
+{
+    // connector standoffs
+    // AC
+    translate([triangle+4,height-side_wall_thickness-4.25,ground_plane_thickness])
+        cube([0.75,4.25,depth-22.5]);
+    translate([triangle+4.75+5.25,height-side_wall_thickness-4.25,ground_plane_thickness])
+        cube([0.75,4.25,depth-22.5]);
+}
+
 module case()
 {
     // this creates the base shape of the case without any cutouts
@@ -209,13 +219,6 @@ module case()
     
     translate([width-side_wall_thickness-3.15,0,0])
         cube([side_wall_thickness,height-11.25-connector_wall_thickness,depth-11.25]);
-    
-    // connector standoffs
-    // AC
-    translate([triangle+4,height-side_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25,depth-22.5]);
-    translate([triangle+4.75+5.25,height-side_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25,depth-22.5]);
     
 }
 
@@ -343,6 +346,7 @@ module exterior()
     // top right is on battery cover
 
     shield_standoffs();
+    connector_standoffs();
 
     screw_posts();
 }
