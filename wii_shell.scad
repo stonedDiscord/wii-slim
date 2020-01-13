@@ -380,9 +380,11 @@ module exterior()
         foot();
     translate([-1,height-23-feet_outer,2.5])
         foot();
+
     // top left
-    translate([-1,height-23-feet_outer,34.5])
-        foot();
+    if ( depth > 35)
+        translate([-1,height-23-feet_outer,34.5])
+            foot();
     // top right is on battery cover
 
     shield_standoffs();
