@@ -7,15 +7,13 @@ depth = 41;
 // original depth is 41
 // absolute minimum is 15
 // as capacitors will be in the way
-// 17 if you want to have gamecube ports
+// 17 if you want to have controller ports
 
 side_wall_thickness = 2.6;
 connector_wall_thickness = 2.2;
 ground_plane_thickness = 2;
 
 triangle = 17.5;
-
-intercase_line = 1.25;
 
 height_back_line = 12.55;
 
@@ -46,11 +44,11 @@ module base_shape()
 
 module battery_cutout()
 {
-    translate([0,5,depth-12.25])
-        cube([side_wall_thickness,33.5,12.25]);
+    translate([-1,5-1,depth-12.25])
+        cube([side_wall_thickness+2,33.5+1,12.25+1]);
     
     translate([side_wall_thickness/2,5+side_wall_thickness/2,depth-13.75])
-        cube([side_wall_thickness/2,35.15,13.75]);
+        cube([side_wall_thickness,35.15,13.75+1]);
 }
 
 module heatsink_cutout()
@@ -63,28 +61,28 @@ module intercase_cutout()
 {
     // left
     // 1/2
-    translate([-3,5,depth-intercase_line])
-        cube([3+side_wall_thickness/2,height-triangle-5,intercase_line+10]);
+    translate([-3,5,depth-side_wall_thickness/2])
+        cube([3+side_wall_thickness/2,height-triangle-5,10]);
     
     // triangle
     translate([0,height-triangle,depth])
         rotate([180,0,45])
-            cube([triangle*sqrt(2),side_wall_thickness/2,intercase_line]);
+            cube([triangle*sqrt(2),side_wall_thickness/2,1.75]);
     
     // connector side
     // they use 1/3 of the plastic thickness for the lip
     translate([triangle,height-2*connector_wall_thickness/3,depth-connector_wall_thickness/2])
-        cube([width-triangle,2*connector_wall_thickness/3,connector_wall_thickness/2]);
+        cube([width-triangle,2*connector_wall_thickness/3,10]);
     
     translate([triangle+12.5,height-connector_wall_thickness/2,depth-5-connector_wall_thickness/2])
-        cube([5.5,connector_wall_thickness/2,connector_wall_thickness/2]);
+        cube([5.5,connector_wall_thickness/2,10]);
     
     //right
-    translate([width-side_wall_thickness/2,height-12.5,depth-intercase_line])
-        cube([side_wall_thickness/2,12.5,intercase_line]);
+    translate([width-side_wall_thickness/2,height-12.5,depth-side_wall_thickness/2])
+        cube([side_wall_thickness/2,12.5,10]);
     
-    translate([width-5.75+side_wall_thickness/2,0,depth-11-intercase_line])
-        cube([side_wall_thickness,height-12.5,intercase_line]);
+    translate([width-5.75+side_wall_thickness/2,0,depth-11-side_wall_thickness/2])
+        cube([side_wall_thickness,height-12.5,10]);
     
 }
 
@@ -207,29 +205,29 @@ module connector_standoffs()
     // connector standoffs
     // AC
     // outer
-    translate([triangle,height-connector_wall_thickness-2.25,ground_plane_thickness])
-        cube([0.75,2.25+connector_wall_thickness,depth-13.5-ground_plane_thickness]);
-    translate([triangle+7.75+5.25,height-connector_wall_thickness-2.25,ground_plane_thickness])
-        cube([0.75,2.25+connector_wall_thickness,depth-13.5-ground_plane_thickness]);
+    translate([triangle,height-connector_wall_thickness-2.25,0])
+        cube([0.75,2.25+connector_wall_thickness,depth-13.5]);
+    translate([triangle+7.75+5.25,height-connector_wall_thickness-2.25,0])
+        cube([0.75,2.25+connector_wall_thickness,depth-13.5]);
 
     // inner
-    translate([triangle+4,height-connector_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25+connector_wall_thickness,depth-20.5-ground_plane_thickness]);
-    translate([triangle+4.75+5.25,height-connector_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25+connector_wall_thickness,depth-20.5-ground_plane_thickness]);
+    translate([triangle+4,height-connector_wall_thickness-4.25,0])
+        cube([0.75,4.25+connector_wall_thickness,depth-20.5]);
+    translate([triangle+4.75+5.25,height-connector_wall_thickness-4.25,0])
+        cube([0.75,4.25+connector_wall_thickness,depth-20.5]);
 
     // sensor bar
     // outer
-    translate([triangle+23.5-0.75,height-connector_wall_thickness-2,ground_plane_thickness])
-        cube([0.75,2+connector_wall_thickness,depth-22.5-ground_plane_thickness]);
-    translate([triangle+23.5+11.75,height-connector_wall_thickness-2,ground_plane_thickness])
-        cube([0.75,2+connector_wall_thickness,depth-22.5-ground_plane_thickness]);
+    translate([triangle+23.5-0.75,height-connector_wall_thickness-2,0])
+        cube([0.75,2+connector_wall_thickness,depth-22.5]);
+    translate([triangle+23.5+11.75,height-connector_wall_thickness-2,0])
+        cube([0.75,2+connector_wall_thickness,depth-22.5]);
 
     // inner
-    translate([triangle+23.5+2.5,height-connector_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25+connector_wall_thickness,depth-28.5-ground_plane_thickness]);
-    translate([triangle+23.5+8.25,height-connector_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25+connector_wall_thickness,depth-28.5-ground_plane_thickness]);
+    translate([triangle+23.5+2.5,height-connector_wall_thickness-4.25,0])
+        cube([0.75,4.25+connector_wall_thickness,depth-28.5]);
+    translate([triangle+23.5+8.25,height-connector_wall_thickness-4.25,0])
+        cube([0.75,4.25+connector_wall_thickness,depth-28.5]);
 }
 
 module case()
@@ -327,8 +325,8 @@ module foot()
     difference()
     {
         cube([feet_height,feet_outer,feet_outer]);
-        translate([0,feet_border,feet_border])
-            cube([feet_height,feet_outer-feet_border*2,feet_outer-feet_border*2]);
+        translate([-1,feet_border,feet_border])
+            cube([feet_height+1,feet_outer-feet_border*2,feet_outer-feet_border*2]);
     }
     
 };
@@ -350,33 +348,33 @@ module main_fan_cutout()
 
 module main_vent_cutout()
 {
-    translate([triangle+49.25,height,4.12])
+    translate([triangle+49.25,height+1,4.12])
         rotate([90,0,0])
-            linear_extrude(connector_wall_thickness)
+            linear_extrude(connector_wall_thickness+2)
                  fan_grille(4);
     
 };
 
 module sub_vent_cutout()
 {
-    translate([0,135,5.6])
+    translate([-1,135,5.6])
         rotate([90,0,90])
-            linear_extrude(side_wall_thickness)
+            linear_extrude(side_wall_thickness+2)
                 fan_grille(2);  
     
 };
 
 module usb_cutout()
 {
-    translate([width-20.35-15.4,height-connector_wall_thickness-17.5,depth-22.65])
-        cube([15.4,connector_wall_thickness+17.5,22.65]);
+    translate([width-20.35-15.4,height-connector_wall_thickness-16.5,depth-22.65])
+        cube([15.4,connector_wall_thickness+18.5,22.65]);
 }
 
 module ac_multiout_cutout()
 {
-    translate([triangle+2.25,height-connector_wall_thickness-11,depth])
+    translate([triangle+2.25,height-connector_wall_thickness-10,depth])
         rotate([-90,0,0])
-            linear_extrude(connector_wall_thickness+11)
+            linear_extrude(connector_wall_thickness+12)
                 polygon([[0,0],[0,20.5],[7.5,20.5],[10.25,18],[10.25,5],[15.75,5],[15.75,17.5],[36,17.5],[39.25,14.25],[39.25,0]]);
 
     // multiout insides
@@ -391,9 +389,9 @@ module ac_multiout_cutout()
 module sensorbar_cutout()
 {
     // hole
-    translate([triangle+25,height-13,depth-22])
+    translate([triangle+25,height-12,depth-22])
         rotate([-90,0,0])
-            linear_extrude(13)
+            linear_extrude(14)
                 polygon([[0,0],[0,7],[7,7],[9,5],[9,0]]);
     // border
     translate([triangle+23.5,height-connector_wall_thickness-1.25,depth-29-1.25])
