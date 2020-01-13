@@ -1,7 +1,7 @@
 // wii top case
 // all measurements in mm
 
-width = 156;
+width = 157;
 height = 206;
 depth = 40.5;
 // original depth is 40.5
@@ -13,7 +13,7 @@ side_wall_thickness = 2.6;
 connector_wall_thickness = 2.4;
 ground_plane_thickness = 2;
 
-triangle = 18;
+triangle = 17.5;
 
 intercase_line = 1.25;
 
@@ -156,7 +156,7 @@ module shield_standoffs()
         standoff(4);
         
     // front
-    translate([15.25-2.25,1,ground_plane_thickness+front_lip/2])
+    translate([14-2.25,1,ground_plane_thickness+front_lip/2])
         standoff(5.5);
         
     translate([width-11.25-2.25,3.5,ground_plane_thickness+front_lip])
