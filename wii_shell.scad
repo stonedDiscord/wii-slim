@@ -400,7 +400,7 @@ module sensorbar_cutout()
         cube([11.75,1.25,11.75]);
 
     // insides
-    translate([triangle+23.5,height-connector_wall_thickness-1.25-11.5,depth-29])
+    translate([triangle+23.5+1.25,height-connector_wall_thickness-1.25-11.5,depth-29])
         cube([9.25,11.5,11.75]);
 }
 
