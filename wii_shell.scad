@@ -7,7 +7,7 @@ depth = 40.5;
 // original depth is 40.5
 // absolute minimum is 15
 // as capacitors will be in the way
-
+// 17 if you want to have gamecube ports
 
 side_wall_thickness = 2.6;
 connector_wall_thickness = 2.2;
@@ -207,10 +207,10 @@ module connector_standoffs()
     // connector standoffs
     // AC
     // outer
-    *translate([triangle+4,height-connector_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25+connector_wall_thickness,depth-22.5]);
-    *translate([triangle+4.75+5.25,height-connector_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25+connector_wall_thickness,depth-22.5]);
+    translate([triangle,height-connector_wall_thickness-2.25,ground_plane_thickness])
+        cube([0.75,2.25+connector_wall_thickness,depth-15.5]);
+    translate([triangle+7.75+5.25,height-connector_wall_thickness-2.25,ground_plane_thickness])
+        cube([0.75,2.25+connector_wall_thickness,depth-15.5]);
 
     // inner
     translate([triangle+4,height-connector_wall_thickness-4.25,ground_plane_thickness])
@@ -374,7 +374,7 @@ module ac_multiout_cutout()
         cube([23,17.75,13]);
 
     // ac connector border
-    translate([triangle+1.75,height-connector_wall_thickness-1.75,depth-21.25])
+    translate([triangle+1,height-connector_wall_thickness-1.75,depth-21.25])
         cube([12,1.75,18.5]);
 }
 
