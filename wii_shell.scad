@@ -185,9 +185,9 @@ module connector_standoffs()
     // connector standoffs
     // AC
     translate([triangle+4,height-side_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25,depth-22.5]);
+        cube([0.75,4.25+side_wall_thickness,depth-22.5]);
     translate([triangle+4.75+5.25,height-side_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25,depth-22.5]);
+        cube([0.75,4.25+side_wall_thickness,depth-22.5]);
 }
 
 module case()
