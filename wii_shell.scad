@@ -206,10 +206,20 @@ module connector_standoffs()
 {
     // connector standoffs
     // AC
+    // outer
+    *translate([triangle+4,height-connector_wall_thickness-4.25,ground_plane_thickness])
+        cube([0.75,4.25+connector_wall_thickness,depth-22.5]);
+    *translate([triangle+4.75+5.25,height-connector_wall_thickness-4.25,ground_plane_thickness])
+        cube([0.75,4.25+connector_wall_thickness,depth-22.5]);
+
+    // inner
     translate([triangle+4,height-connector_wall_thickness-4.25,ground_plane_thickness])
         cube([0.75,4.25+connector_wall_thickness,depth-22.5]);
     translate([triangle+4.75+5.25,height-connector_wall_thickness-4.25,ground_plane_thickness])
         cube([0.75,4.25+connector_wall_thickness,depth-22.5]);
+
+    // sensor bar
+
 }
 
 module case()
@@ -348,18 +358,24 @@ module sub_vent_cutout()
 
 module usb_cutout()
 {
-    translate([width-20.35-15.4,height-side_wall_thickness-17,depth-22.65])
+    translate([width-20.35-15.4,height-connector_wall_thickness-17,depth-22.65])
         cube([15.4,20,22.65]);
 }
 
 module ac_multiout_cutout()
 {
-    translate([triangle+2.25,height-side_wall_thickness-11,depth])
+    translate([triangle+2.25,height-connector_wall_thickness-11,depth])
         rotate([-90,0,0])
-            linear_extrude(20)
+            linear_extrude(connector_wall_thickness+11)
                 polygon([[0,0],[0,20.5],[7.5,20.5],[10.25,18],[10.25,5],[15.75,5],[15.75,17.5],[36,17.5],[39.25,14.25],[39.25,0]]);
-    translate([triangle+2.25,height-side_wall_thickness-1.5,depth-21.25])
-        cube([12,1.5,18.75]);
+
+    // multiout insides
+    translate([triangle+2.25+16,height-17.75-1.75,depth-13-4.75])
+        cube([23,17.75,13]);
+
+    // ac connector border
+    translate([triangle+1.75,height-connector_wall_thickness-1.75,depth-21.25])
+        cube([12,1.75,18.5]);
 }
 
 module sensorbar_cutout()
