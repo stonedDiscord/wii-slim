@@ -46,11 +46,11 @@ module base_shape()
 
 module battery_cutout()
 {
-    translate([0,5,depth-12.75])
-        cube([side_wall_thickness,33.5,12.75]);
+    translate([0,5,depth-11.75])
+        cube([side_wall_thickness,33.5,11.75]);
     
-    translate([side_wall_thickness/2,5+side_wall_thickness/2,depth-14])
-        cube([side_wall_thickness/2,35.15,14]);
+    translate([side_wall_thickness/2,5+side_wall_thickness/2,depth-13])
+        cube([side_wall_thickness/2,35.15,13]);
 }
 
 module heatsink_cutout()
@@ -171,13 +171,6 @@ module screw_posts()
         
     translate([width-11.25+2.25,height-11+2.25,ground_plane_thickness])
         standoff(depth-ground_plane_thickness-19);
-        
-    // front lip
-    translate([2.25,0,2.25])
-        cube([width-2.25-3.25,7,front_lip]);
-        
-    translate([2.25,0,2.25])
-        cube([1.5,7,depth-15.25]);
 }
 
 module connector_standoffs()
@@ -219,6 +212,14 @@ module case()
     
     translate([width-side_wall_thickness-3.15,0,0])
         cube([side_wall_thickness,height-11.25-connector_wall_thickness,depth-11.25]);
+
+    // front lip
+    translate([2.25,0,2.25])
+        cube([width-2.25-3.25,7,front_lip]);
+        
+    // left side of the front lip
+    translate([2.25,0,2.25])
+        cube([1.5,7,depth-15.25]);
     
 }
 
