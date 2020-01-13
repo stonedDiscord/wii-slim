@@ -10,7 +10,7 @@ depth = 40.5;
 
 
 side_wall_thickness = 2.6;
-connector_wall_thickness = 2.4;
+connector_wall_thickness = 2.2;
 ground_plane_thickness = 2;
 
 triangle = 17.5;
@@ -184,10 +184,10 @@ module connector_standoffs()
 {
     // connector standoffs
     // AC
-    translate([triangle+4,height-side_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25+side_wall_thickness,depth-22.5]);
-    translate([triangle+4.75+5.25,height-side_wall_thickness-4.25,ground_plane_thickness])
-        cube([0.75,4.25+side_wall_thickness,depth-22.5]);
+    translate([triangle+4,height-connector_wall_thickness-4.25,ground_plane_thickness])
+        cube([0.75,4.25+connector_wall_thickness,depth-22.5]);
+    translate([triangle+4.75+5.25,height-connector_wall_thickness-4.25,ground_plane_thickness])
+        cube([0.75,4.25+connector_wall_thickness,depth-22.5]);
 }
 
 module case()
