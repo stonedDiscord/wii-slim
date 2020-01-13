@@ -88,39 +88,59 @@ module intercase_cutout()
     
 }
 
+module screwh(screw_radius)
+{
+    // a screw from the left side
+    rotate([0,90,0])
+            cylinder(h=6,r=screw_radius);
+
+    // recessed
+    rotate([0,90,0])
+            cylinder(h=0.75,r=screw_radius+1);
+
+}
+
 module screwholes()
 {
-    // bigger ones have a diameter of 2.75mm
-    screw_radius = 2.75 / 2;
+    // bigger ones have a diameter of 3mm
+    screw_radius = 3 / 2;
     // left
     translate([0,37.5,6])
-        rotate([0,90,0])
-            cylinder(h=side_wall_thickness,r=screw_radius);
+        screwh(screw_radius);
     translate([0,125.5,6])
-        rotate([0,90,0])
-            cylinder(h=side_wall_thickness,r=screw_radius);
+        screwh(screw_radius);
     translate([0,110,depth-2.75])
-        rotate([0,90,0])
-            cylinder(h=side_wall_thickness,r=screw_radius);
+        screwh(screw_radius);
     // right
-    translate([width-5.75,37.5,7.5])
-        rotate([0,270,0])
-            cylinder(h=5.75,r=screw_radius);
-    translate([width-5.75,125.5,7.5])
-        rotate([0,270,0])
-            cylinder(h=5.75,r=screw_radius);
+    translate([width-3.15,37.5,7.5])
+        rotate([0,180,0])
+            screwh(screw_radius);
+    translate([width-3.15,125.5,7.5])
+        rotate([0,180,0])
+            screwh(screw_radius);
 
-    // the smaller ones are 1.5mm in diameter
-    small_screw_radius = 1.5 / 2;
+    // the smaller ones are 2mm in diameter
+    small_screw_radius = 2 / 2;
     // left
     translate([0,10,6.25])
-        rotate([0,90,0])
-            cylinder(h=side_wall_thickness,r=small_screw_radius);
+        screwh(small_screw_radius);
     
     // right
-    translate([width-5.75,10,6.25])
-        rotate([0,270,0])
-            cylinder(h=5.75,r=small_screw_radius);
+    translate([width,10,6.25])
+        rotate([0,180,0])
+            screwh(small_screw_radius);
+
+    // the screwholes for the black gc port plate are 1.5
+    smaller_screw_radius = 1.5 / 2;
+
+    translate([width,96,6.25])
+        rotate([0,180,0])
+            screwh(smaller_screw_radius);
+
+    translate([width,height-23.5,6.25])
+        rotate([0,180,0])
+            screwh(smaller_screw_radius);
+
 }
 
 module standoff(standoff_height)
