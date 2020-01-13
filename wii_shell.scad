@@ -64,7 +64,7 @@ module intercase_cutout()
     // left
     // 1/2
     translate([-3,5,depth-intercase_line])
-        cube([3+side_wall_thickness/2,height-triangle-5,intercase_line+1]);
+        cube([3+side_wall_thickness/2,height-triangle-5,intercase_line+10]);
     
     // triangle
     translate([0,height-triangle,depth])
