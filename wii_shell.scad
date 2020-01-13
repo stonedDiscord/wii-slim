@@ -113,12 +113,12 @@ module screwholes()
     // the smaller ones are 1.5mm in diameter
     small_screw_radius = 1.5 / 2;
     // left
-    translate([0,10,6])
+    translate([0,10,6.25])
         rotate([0,90,0])
             cylinder(h=side_wall_thickness,r=small_screw_radius);
     
     // right
-    translate([width-5.75,10,6])
+    translate([width-5.75,10,6.25])
         rotate([0,270,0])
             cylinder(h=5.75,r=small_screw_radius);
 }
@@ -337,7 +337,7 @@ module exterior()
 
     // feet
     // bottom
-    translate([-1,8,2.5])
+    translate([-1,7.5,2.25])
         foot();
     translate([-1,height-23-feet_outer,2.5])
         foot();
