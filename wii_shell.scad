@@ -112,7 +112,7 @@ module screwholes()
     translate([0,110,depth-2.75])
         screwh(screw_radius);
     // right
-    translate([width-3.15,37.5,7.5])
+    translate([width-3.15,30.5,7.5])
         rotate([0,180,0])
             screwh(screw_radius);
     translate([width-3.15,125.5,7.5])
@@ -243,14 +243,24 @@ module case()
     
 }
 
+module controller_port()
+{
+    // a single gc controller port
+    rotate([0,270,0])
+        cylinder(h=3.75,r=gamecube_port_radius);
+    rotate([0,270,0])
+        translate([11.5/-2,13.5/-2,0])
+            cube([11.5,13.5,22]);
+
+}
+
+
 module gamecube_controller_ports()
 {
-    translate([width-5.75-22,16.5+gamecube_port_radius,depth-2.4-gamecube_port_radius])
-        rotate([90,0,90])
-            linear_extrude(22+5.75)
-                for (x=[0:3])
-                        translate([x*(gamecube_port_radius*2+9.75),0])
-                            circle(gamecube_port_radius);   
+    translate([width-3.15,16.5+gamecube_port_radius,depth-2.4-gamecube_port_radius])
+        for (y=[0:3])
+            translate([0,y*(gamecube_port_radius*2+9.75),0])
+                controller_port();
     
 }
 
@@ -397,4 +407,3 @@ difference()
 };
 
 ;
-//case();
