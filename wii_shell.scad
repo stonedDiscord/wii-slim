@@ -107,7 +107,7 @@ module screwholes()
         screwh(screw_radius);
     translate([0,125.5,6])
         screwh(screw_radius);
-    translate([0,110,depth-2.75])
+    translate([0,108,depth-2.75])
         screwh(screw_radius);
     // right
     translate([width-3.15,30.5,7.5])
