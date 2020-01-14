@@ -146,7 +146,7 @@ module standoff(standoff_height)
     difference()
     {
         cylinder(h=standoff_height, r=2.25);
-        cylinder(h=standoff_height, r=1.25) ;       
+        cylinder(h=standoff_height+1, r=1.25) ;       
     };    
 };
 
@@ -366,8 +366,8 @@ module sub_vent_cutout()
 
 module usb_cutout()
 {
-    translate([width-20.35-15.4,height-connector_wall_thickness-16.5,depth-22.65])
-        cube([15.4,connector_wall_thickness+18.5,22.65]);
+    translate([width-20.35-15.5,height-connector_wall_thickness-16.5,depth-22.65])
+        cube([15.5,connector_wall_thickness+18.5,22.65]);
 }
 
 module ac_multiout_cutout()
