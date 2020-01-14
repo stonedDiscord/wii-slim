@@ -286,7 +286,7 @@ module gamecube_controller_ports()
 {
     translate([width-3.15,16.5+gamecube_port_radius,depth-2.4-gamecube_port_radius])
         for (y=[0:3])
-            translate([0,y*(gamecube_port_radius*2+9.75),0])
+            translate([0,y*(gamecube_port_radius*2+10),0])
                 controller_port();
     
 }
