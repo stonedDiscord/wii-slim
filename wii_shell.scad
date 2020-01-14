@@ -382,8 +382,8 @@ module ac_multiout_cutout()
         cube([23,17.75,13]);
 
     // ac connector border
-    translate([triangle+1,height-connector_wall_thickness-1.75,depth-21.25])
-        cube([12,1.75,18.5]);
+    translate([triangle+0.75,height-connector_wall_thickness-1.75,depth-21.25])
+        cube([12.5,1.75,18.5]);
 }
 
 module sensorbar_cutout()
