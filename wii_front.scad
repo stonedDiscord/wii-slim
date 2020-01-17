@@ -14,7 +14,7 @@ module button(button_width) {
     cube([button_width,14,100]);
 }
 
-module main_buttons() {
+module main_buttons(eject=true) {
     // power
     translate([15,height-3.25-14,-1])
         button(5.5);
@@ -24,8 +24,9 @@ module main_buttons() {
         button(4);
 
     // eject
-    translate([width-20,height-3.25-14,-1])
-        button(5.5);
+    if (eject)
+        translate([width-20,height-3.25-14,-1])
+            button(5.5);
 
     // sync
     translate([51.5,height-18,-1])
@@ -76,9 +77,15 @@ module button_angles() {
 
 module disk_slot() {
     disk_slot_width = 129.25;
-    height = 6.25;
+    disk_slot_height = 6.25;
 
-    
+    translate([16.75,11.5,-1])
+    linear_extrude(100)
+    hull() {
+        translate([disk_slot_width-disk_slot_height,0,0])
+            circle(d = disk_slot_height);
+        circle(d = disk_slot_height);
+    }
 }
 
 module sd_door() {
@@ -226,8 +233,13 @@ difference() {
 
     slope_cutaway();
 
-    main_buttons();
-    disk_slot();
+    if ( height > 32) {
+        disk_slot();
+        main_buttons();
+    } else {
+        main_buttons(eject=false);
+    }
+
     sd_cutout();
     sticker_cutouts();
     screwholes();
