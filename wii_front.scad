@@ -32,8 +32,53 @@ module main_buttons() {
         cube([5.5,10.25,100]);
 }
 
+module button_angle(bheight) {
+    difference() {
+        cube([1.5,3.5,bheight]);
+
+        translate([-1,3.5/2,bheight])
+            rotate([0,90,0])
+                cylinder(d=1.5 ,h=3);
+    }
+}
+
+module button_angles() {
+    // power
+    translate([13,height-21,0])
+        button_angle(wall_thickness+1);
+
+    translate([23.5,height-21,0])
+        button_angle(wall_thickness+1);
+
+    // reset
+    translate([26,height-21,0])
+        button_angle(wall_thickness+1);
+
+    translate([36.5,height-21,0])
+        button_angle(wall_thickness+1);
+
+    // eject
+    translate([width-22,height-21,0])
+        button_angle(wall_thickness+1);
+
+    translate([width-13,height-21,0])
+        button_angle(wall_thickness+1);
+
+    // sync
+    translate([42.5,height-17+1.5,0])
+        rotate([0,0,270])        
+            button_angle(wall_thickness+3);
+
+    translate([42.5,height-10.25+1.5,0])
+        rotate([0,0,270])        
+            button_angle(wall_thickness+3);
+}
+
 module disk_slot() {
     disk_slot_width = 129.25;
+    height = 6.25;
+
+    
 }
 
 module sd_door() {
@@ -41,8 +86,14 @@ module sd_door() {
 }
 
 module sd_cutout() {
-    translate([59,height-12-5,-1])
+    translate([58.75,height-12-5,-1])
         cube([49,12,100]);
+
+    translate([wall_thickness+55.5,height-4-1.75,-1])
+        cube([3.5,1.75,100]);
+
+    translate([width-48-3.5,height-4-1.75,-1])
+        cube([3.5,1.75,100]);
 }
 
 module sticker() {
@@ -153,8 +204,18 @@ module base() {
     translate([0,height-wall_thickness,depth-6.5])
         cube([width,wall_thickness,6.5]);
 
-    light_holders();
+    // door borders
+    translate([wall_thickness+44.5,height-19.5,0])
+        cube([65,19.5,4]);
 
+    translate([wall_thickness+55.5,height-19.5,0])
+        cube([51.25,19.5,5]);
+
+    translate([wall_thickness+55.5,height-17.6,0])
+        cube([51.25,17.6,8]);
+
+    light_holders();
+    button_angles();
     screw_flaps();
 
     screwposts();
