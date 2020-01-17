@@ -82,9 +82,13 @@ module disk_slot() {
     translate([16.75,11.5,-1])
     linear_extrude(100)
     hull() {
-        translate([disk_slot_width-disk_slot_height,0,0])
-            circle(d = disk_slot_height);
         circle(d = disk_slot_height);
+
+        translate([disk_slot_width/2,0,0])
+            circle(d = 7.75);
+
+        translate([disk_slot_width-disk_slot_height,0,0])
+            circle(d = disk_slot_height);  
     }
 }
 
