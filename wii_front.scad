@@ -39,6 +39,19 @@ module sticker() {
     cube([8,0.1+1,5.5]);
 }
 
+module light_holder() {
+    rotate([90,0,90])
+        linear_extrude(1.25)
+            polygon([[0,0],[0,7.5+2],[1.25,7.5+2],[2.15,5+2],[2.15,4+2],[1.25,4+2],[1.25,0]]);
+}
+
+module light_holders() {
+    for(i=[0:3]) {
+        translate([24.40+33.75*i,2,0])
+            light_holder();
+    }
+}
+
 module sticker_cutouts() {
     translate([4.5,height-0.1,depth-5.5])
         sticker();
@@ -70,6 +83,8 @@ module base() {
 
     translate([0,height-wall_thickness,depth-6.5])
         cube([width,wall_thickness,6.5]);
+
+    light_holders();
 }
 
 difference() {
@@ -81,4 +96,3 @@ difference() {
     disk_slot();
     sticker_cutouts();
 }
-
