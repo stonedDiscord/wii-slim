@@ -8,6 +8,8 @@ wall_thickness = 2;
 
 slope = 6.5;
 
+$fn = $preview ? 8 : 100;
+
 module button(button_width) {
     cube([button_width,14,100]);
 }
@@ -25,6 +27,9 @@ module main_buttons() {
     translate([width-20,height-3.25-14,-1])
         button(5.5);
 
+    // sync
+    translate([51.5,height-18,-1])
+        cube([5.5,10.25,100]);
 }
 
 module disk_slot() {
@@ -33,6 +38,11 @@ module disk_slot() {
 
 module sd_door() {
     door_width = 61.75;
+}
+
+module sd_cutout() {
+    translate([59,height-12-5,-1])
+        cube([49,12,100]);
 }
 
 module sticker() {
@@ -50,6 +60,65 @@ module light_holders() {
         translate([24.40+33.75*i,2,0])
             light_holder();
     }
+}
+
+module screwhole(screw_radius) {
+    // a screw from the left side
+    rotate([0,90,270])
+            cylinder(h=6,r=screw_radius);
+
+    // recessed
+    rotate([0,90,270])
+            cylinder(h=0.75,r=screw_radius+1);
+
+}
+
+module screwholes() {
+    translate([9,height,depth-3])
+        screwhole(1.5);
+    translate([width-8,height,depth-3])
+        screwhole(1.5);
+}
+
+module screw_flap() {
+    cube([1,12,8]);
+
+    translate([0,4,0])
+        difference() {
+            cube([1,7.75,22.15]);
+
+            translate([-1,3,22.15-2])
+                rotate([0,90,0])
+                    cylinder(d = 1.75, h = 3);
+        }
+}
+
+module screw_flaps() {
+    translate([6,0,0])
+        screw_flap();
+
+    translate([width-wall_thickness-3,0,0])
+        screw_flap();
+}
+
+module screwpost(standoff_height)
+{
+    difference()
+    {
+        cylinder(h=standoff_height, d=3.75);
+        cylinder(h=standoff_height+1, d=1.75) ;       
+    };    
+};
+
+module screwposts() {
+    translate([11,height-13.5,0])
+        screwpost(8.75);
+
+    translate([width-43,height-11.5,0])
+        screwpost(8.75);
+
+    translate([width-26,height-13,0])
+        screwpost(8.75);
 }
 
 module sticker_cutouts() {
@@ -85,6 +154,10 @@ module base() {
         cube([width,wall_thickness,6.5]);
 
     light_holders();
+
+    screw_flaps();
+
+    screwposts();
 }
 
 difference() {
@@ -94,5 +167,7 @@ difference() {
 
     main_buttons();
     disk_slot();
+    sd_cutout();
     sticker_cutouts();
+    screwholes();
 }
