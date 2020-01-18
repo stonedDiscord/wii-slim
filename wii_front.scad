@@ -98,13 +98,23 @@ module sd_door() {
 
 module sd_cutout() {
     translate([58.75,height-12-5,-1])
-        cube([49,12,100]);
+        cube([49,12,10]);
 
     translate([wall_thickness+55.5,height-4-1.75,-1])
-        cube([3.5,1.75,100]);
+        cube([3.5,1.75,10]);
 
     translate([width-48-3.5,height-4-1.75,-1])
-        cube([3.5,1.75,100]);
+        cube([3.5,1.75,10]);
+
+    translate([wall_thickness+65.25,height-19.5-1,wall_thickness+0.1])
+        cube([3,1.9+1,10]);
+    translate([wall_thickness+85.25,height-19.5-1,wall_thickness+0.1])
+        cube([3,1.9+1,10]);
+
+    translate([wall_thickness+65.25,height-19.5-1,wall_thickness+0.1])
+        cube([3,10,1]);
+    translate([wall_thickness+85.25,height-19.5-1,wall_thickness+0.1])
+        cube([3,10,1]);
 }
 
 module sticker() {
