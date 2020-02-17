@@ -182,6 +182,9 @@ module screw_flaps() {
     // supports
     translate([0,7.5,0])
         cube([7,1,8]);
+
+    translate([width-5,7.5,0])
+        cube([5,1,8]);
 }
 
 module screwpost(standoff_height)
