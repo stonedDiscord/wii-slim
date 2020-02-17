@@ -152,12 +152,19 @@ module screwholes() {
         screwhole(1.5);
 }
 
+module screwhole_supports() {
+    translate([6,height-2.5,depth-5])
+        cube([6,2.5,5]);
+    translate([width-11,height-2.5,depth-5])
+        cube([6,2.5,5]);
+}
+
 module screw_flap() {
     cube([1,12,8]);
 
     translate([0,4,0])
         difference() {
-            cube([1,7.75,22.15]);
+            cube([1,8,22.15]);
 
             translate([-1,3,22.15-2])
                 rotate([0,90,0])
@@ -171,6 +178,10 @@ module screw_flaps() {
 
     translate([width-wall_thickness-3,0,0])
         screw_flap();
+
+    // supports
+    translate([0,7.5,0])
+        cube([7,1,8]);
 }
 
 module screwpost(standoff_height)
@@ -238,6 +249,8 @@ module base() {
     light_holders();
     button_angles();
     screw_flaps();
+
+    screwhole_supports()
 
     screwposts();
 }
