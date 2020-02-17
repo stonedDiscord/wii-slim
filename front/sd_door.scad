@@ -6,14 +6,7 @@ thickness = 1.5;
 $fn = $preview ? 12 : 100;
 
 module door_angle() {
-    rotate([90,0,-90])
-    linear_extrude(0.45)
-    intersection() {
-        circle(7);
-
-    polygon([[0,0],[7,0],[7,-7],[2,-4],[3.5,-2.75],[0,-2.75]]);
     
-    }
 }
 
 module door_nipple() {
@@ -55,20 +48,20 @@ module door_solid() {
     translate([11.1,0,0])
         door_angle_holder();
 
-    * translate([11.1,height-1.25,depth-1])
+    translate([11.1,height-1.25,depth-1])
         door_angle();
 
-    * translate([11.1-1.4,height-2,depth-3.25])
+    translate([11.1-1.4,height-2,depth-3.25])
         door_nipple();
 
     // right
     translate([width-3.4,0,0])
         door_angle_holder();
 
-    * translate([width-3.4+0.9+0.45,height-1.25,depth-1])
+    translate([width-3.4+0.9+0.45,height-1.25,depth-1])
         door_angle();
 
-    * translate([width-3.4,height-2,depth-3.25])
+    translate([width-3.4,height-2,depth-3.25])
         door_nipple();
 }
 
