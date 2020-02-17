@@ -94,23 +94,44 @@ module disk_slot() {
 
 module sd_door() {
     door_width = 61.75;
+
+    // widest outer plate
+    * translate([wall_thickness+44.5,height-19.5,2])
+        cube([65,19.5,2]);
+
+    // narrow block
+    * translate([wall_thickness+55.5,height-19.5,0])
+        cube([51,19.5,5]);
+
+    // highest part
+    * translate([wall_thickness+55.5,height-17.6,0])
+        cube([51,17.6,8]);
+
+    // inner border
+    translate([58.5-1,27-1.5,depth-11])
+        cube([51,1.5,5]);
 }
 
 module sd_cutout() {
+    // the biggest hole that goes through the entire thing
     translate([58.75,height-12-5,-1])
         cube([49,12,10]);
 
+    // left space for the sd door angle that goes through
     translate([wall_thickness+55.5,height-4-1.75,-1])
         cube([3.5,1.75,10]);
 
+    // right space for the sd door angle that goes through
     translate([width-48-3.5,height-4-1.75,-1])
         cube([3.5,1.75,10]);
 
+    // holes for the clip on the door to go in z direction
     translate([wall_thickness+65.25,height-19.5-1,wall_thickness+0.1])
         cube([3,1.9+1,10]);
     translate([wall_thickness+85.25,height-19.5-1,wall_thickness+0.1])
         cube([3,1.9+1,10]);
 
+    // same but in y direction
     translate([wall_thickness+65.25,height-19.5-1,wall_thickness+0.1])
         cube([3,10,1]);
     translate([wall_thickness+85.25,height-19.5-1,wall_thickness+0.1])
@@ -240,14 +261,7 @@ module base() {
         cube([width,wall_thickness,6.5]);
 
     // door borders
-    translate([wall_thickness+44.5,height-19.5,0])
-        cube([65,19.5,4]);
-
-    translate([wall_thickness+55.5,height-19.5,0])
-        cube([51.25,19.5,5]);
-
-    translate([wall_thickness+55.5,height-17.6,0])
-        cube([51.25,17.6,8]);
+    sd_door();
 
     light_holders();
     button_angles();
