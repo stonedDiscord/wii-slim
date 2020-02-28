@@ -18,7 +18,7 @@ module button(button_width) {
 
 module main_buttons(eject=true) {
     // power
-    translate([15,height-3.25-14,-1])
+    translate([wall_thickness+13,height-3.25-14,-1])
         button(6);
 
     // reset
@@ -27,7 +27,7 @@ module main_buttons(eject=true) {
 
     // eject
     if (eject)
-        translate([width-14-6,height-3.25-14,-1])
+        translate([width-wall_thickness-12-6,height-3.25-14,-1])
             button(6);
 
     // sync
