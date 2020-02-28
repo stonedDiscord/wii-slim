@@ -1,10 +1,10 @@
 // front of the case with the drive slot
 
-height = 44;
-width = 157;
-depth = 14.15;
-
 wall_thickness = 2;
+
+height = 40 + wall_thickness*2;
+width = 153 + wall_thickness*2;
+depth = 14.15;
 
 slope = 6.5;
 
@@ -19,16 +19,16 @@ module button(button_width) {
 module main_buttons(eject=true) {
     // power
     translate([15,height-3.25-14,-1])
-        button(5.5);
+        button(6);
 
     // reset
-    translate([30,height-3.25-14,-1])
-        button(4);
+    translate([29.75,height-3.25-14,-1])
+        button(4.5);
 
     // eject
     if (eject)
-        translate([width-20,height-3.25-14,-1])
-            button(5.5);
+        translate([width-14-6,height-3.25-14,-1])
+            button(6);
 
     // sync
     translate([51.5,height-18,-1])
