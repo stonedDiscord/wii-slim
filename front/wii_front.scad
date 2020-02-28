@@ -2,11 +2,13 @@
 
 height = 44;
 width = 157;
-depth = 13.25;
+depth = 14.15;
 
 wall_thickness = 2;
 
 slope = 6.5;
+
+door_width = 61.75;
 
 $fn = $preview ? 8 : 100;
 
@@ -93,18 +95,16 @@ module disk_slot() {
 }
 
 module sd_door() {
-    door_width = 61.75;
-
     // widest outer plate
-    * translate([wall_thickness+44.5,height-19.5,2])
+    translate([wall_thickness+44.5,height-19.5,2])
         cube([65,19.5,2]);
 
     // narrow block
-    * translate([wall_thickness+55.5,height-19.5,0])
+    translate([wall_thickness+55.5,height-19.5,0])
         cube([51,19.5,5]);
 
     // highest part
-    * translate([wall_thickness+55.5,height-17.6,0])
+    translate([wall_thickness+55.5,height-17.6,0])
         cube([51,17.6,8]);
 
     // inner border
@@ -125,6 +125,10 @@ module sd_cutout() {
     translate([width-48-3.5,height-4-1.75,-1])
         cube([3.5,1.75,10]);
 
+    // inside
+    translate([wall_thickness+71.25,height-19.5-1,wall_thickness+1])
+        cube([10.5,1.25+1,10]);
+
     // holes for the clip on the door to go in z direction
     translate([wall_thickness+65.25,height-19.5-1,wall_thickness+0.1])
         cube([3,1.9+1,10]);
@@ -136,6 +140,35 @@ module sd_cutout() {
         cube([3,10,1]);
     translate([wall_thickness+85.25,height-19.5-1,wall_thickness+0.1])
         cube([3,10,1]);
+
+    // around sync button
+    translate([48, 25.75, -1]) {
+        cube([10.75,200,3.15+1]);
+    }
+
+    // right side
+    translate([width-49.25, 25.75, -1]) {
+        cube([2.25, 200, 3.15+1]);    
+    }
+
+    translate([width-49.25-22, 25.75, -1]) {
+        cube([22, 200, 3.65+1]);    
+    }
+
+    // left side
+    translate([58.5, 25.75, -1]) {
+        cube([13.6, 200, 3.65+1]);    
+    }
+
+    // middle
+    translate([48, 25.75, -1]) {
+        cube([door_width,200,1.5+1]);
+    }
+
+    // angle side
+    translate([48, height-5.5, -1]) {
+        cube([door_width,200,depth-9.15+1]);
+    }
 }
 
 module sticker() {
@@ -267,9 +300,9 @@ module base() {
     button_angles();
     screw_flaps();
 
-    screwhole_supports()
-
     screwposts();
+
+    screwhole_supports();    
 }
 
 difference() {
