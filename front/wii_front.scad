@@ -96,23 +96,23 @@ module disk_slot() {
 
 module sd_door() {
     // widest outer plate
-    translate([wall_thickness+44.5,height-19.5,2])
+    translate([0,0,2])
         cube([65,16,2]);
 
     // narrow block
-    translate([wall_thickness+55.5,height-19.5,0])
+    translate([11,0,0])
         cube([51,14,5]);
 
     // highest part
-    translate([wall_thickness+55.5,height-17.6,0])
+    translate([11,1.9,0])
         cube([51,10,8]);
 
     // inner border
-    translate([58.5-1,27-1.5,depth-11])
+    translate([12-1,1,depth-11])
         cube([51,1.5,5]);
 
     // slope
-    translate([wall_thickness+44.5, height-5.5,3.15])
+    translate([0,14,3.15])
         rotate([45,0,0])
             cube([11,2.5*sqrt(2),wall_thickness]);
 }
@@ -299,7 +299,8 @@ module base() {
         cube([width,wall_thickness,8]);
 
     // door borders
-    sd_door();
+    translate([wall_thickness+44.5,height-19.5,0])
+        sd_door();
 
     light_holders();
     button_angles();
