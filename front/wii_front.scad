@@ -290,8 +290,8 @@ module base() {
         rotate([45,0,0])
             cube([width,slope*sqrt(2),wall_thickness]);
 
-    translate([0,height-wall_thickness,depth-6.5])
-        cube([width,wall_thickness,6.5]);
+    translate([0,height-wall_thickness,depth-8])
+        cube([width,wall_thickness,8]);
 
     // door borders
     sd_door();
