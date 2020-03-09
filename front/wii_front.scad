@@ -1,16 +1,32 @@
-// front of the case with the drive slot
+/*
+    - front of the case with the drive slot
+*/
 
-wall_thickness = 2;
+/* [Case] */
+// Thickness of the outer plastic in mm
+wall_thickness = 2; // [0:0.1:3] 
 
-height = 40 + wall_thickness*2;
-width = 153 + wall_thickness*2;
-depth = 14.15;
+// Inner height in mm
+case_height = 40; // [15:0.5:50]
 
-slope = 6.5;
+// Inner width in mm
+case_width = 153; // [50:0.5:200]
 
-door_width = 61.75;
+// Total depth in mm
+depth = 14.15; // [5:0.5:20]
+
+// Length of the triagonal slope in mm
+slope = 6.5; // [5:0.5:20]
+
+// Width of the SD card door in mm
+door_width = 61.75; // [20:0.5:100]
+
+/*--------------------------------------------------------------------------------------------*/
 
 $fn = $preview ? 8 : 100;
+
+height = case_height + wall_thickness*2;
+width = case_width + wall_thickness*2;
 
 module button(button_width) {
     cube([button_width,14,100]);
@@ -119,7 +135,7 @@ module sd_door() {
 
 module sd_cutout() {
     // the biggest hole that goes through the entire thing
-    translate([58.75,height-12-5,-1])
+    translate([wall_thickness+56.75,height-12-5,-1])
         cube([49,12,10]);
 
     // left space for the sd door angle that goes through
