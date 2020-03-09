@@ -1,31 +1,37 @@
-// wii top case
-// all measurements in mm
+/*
+    - wii top case
+*/
 
-width = 157;
-height = 206;
-depth = 41;
-// original depth is 41
-// absolute minimum is 15
-// as capacitors will be in the way
-// 17 if you want to have controller ports
+/* [Case] */
+// Total case width in mm. Needs to be at least 17 to have gamecube ports
+width = 157; // [100:0.5:200]
 
-side_wall_thickness = 2.6;
-connector_wall_thickness = 2.2;
-ground_plane_thickness = 2;
+// Total case height in mm
+height = 206; // [100:0.5:300]
 
-triangle = 17.5;
+// Total case depth in mm
+depth = 41; // [15:0.5:50]
+
+front_lip = 1.75; // [0:0.25:5]
+
+side_wall_thickness = 2.6; // [0:0.1:5]
+connector_wall_thickness = 2.2; // [0:0.1:5]
+ground_plane_thickness = 2; // [0:0.1:5]
+
+triangle = 17.5; // [0:0.5:30]
 
 height_back_line = 12.55;
 
-line_thickness = 0.50;
+line_thickness = 0.50; // [0:0.1:1]
 
-gamecube_port_radius = 9;
+/* [Cutouts] */
+// Radius of the GC ports in mm
+gamecube_port_radius = 9; // [0:0.5:20]
 
-feet_outer = 7.5;
-feet_border = 0.5;
-feet_height = 1;
-
-front_lip = 1.75;
+/* [Feet] */
+feet_outer = 7.5; // [0:0.5:10]
+feet_border = 0.5; // [0:0.1:1]
+feet_height = 1; // [0:0.1:2]
 
 $fn = $preview ? 8 : 100;
 
