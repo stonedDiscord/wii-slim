@@ -13,14 +13,24 @@ case_height = 40; // [15:0.5:50]
 case_width = 153; // [50:0.5:200]
 
 // Total depth in mm
-depth = 14.15; // [5:0.5:20]
+depth = 14.15; // [5:0.15:20]
 
 // Length of the triagonal slope in mm
-slope = 6.5; // [5:0.5:20]
+slope = 6.5; // [0:0.5:15]
 
+/* [Slots] */
 // Width of the SD card door in mm
 door_width = 61.75; // [20:0.5:100]
 
+// Width of the disk slot in mm
+disk_slot_width = 129.25; // [50:0.25:200]
+
+// Height of the disk slot in mm
+disk_slot_height = 6.25; // [1:0.25:10]
+
+/* [Buttons] */
+// Width of power and eject button
+main_button_width = 6; // [1:0.5:10]
 /*--------------------------------------------------------------------------------------------*/
 
 $fn = $preview ? 8 : 100;
@@ -35,7 +45,7 @@ module button(button_width) {
 module main_buttons(eject=true) {
     // power
     translate([wall_thickness+13,height-3.25-14,-1])
-        button(6);
+        button(main_button_width);
 
     // reset
     translate([29.75,height-3.25-14,-1])
@@ -44,7 +54,7 @@ module main_buttons(eject=true) {
     // eject
     if (eject)
         translate([width-wall_thickness-12-6,height-3.25-14,-1])
-            button(6);
+            button(main_button_width);
 
     // sync
     translate([51.5,height-18,-1])
@@ -94,9 +104,6 @@ module button_angles() {
 }
 
 module disk_slot() {
-    disk_slot_width = 129.25;
-    disk_slot_height = 6.25;
-
     translate([16.75,11.5,-1])
     linear_extrude(100)
     hull() {
